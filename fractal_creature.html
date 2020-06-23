@@ -1,0 +1,28 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/>
+<title>Fractal Creature</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.6.6/processing.js"></script>
+<script type="text/processing" data-processing-target="processing-canvas">
+	float r, t;
+	void setup() {
+	    size(window.innerWidth, window.innerHeight);
+	    stroke(-1);
+	}
+
+	void draw() {
+		background(0);
+		text("Dedicated to Zeel", window.innerWidth / 2 - 50, window.innerHeight / 8);
+	    t += .003;
+	    for(r=0;r<6;r+=PI/4) {
+	    	f(window.innerWidth / 2, window.innerHeight / 2, r, 120);
+	    }
+	}
+
+	void f(float x, float y, float r, float d) {
+	    if (d > 3) {
+	        line(x, y, x += cos(r) * d, y -= sin(r) * d);
+	        f(x, y, r + y / 99 + t, d / 1.5);
+	        f(x, y, r - y / 99 - t, d / 1.5);
+	    }
+	}
+</script>
+<canvas id="processing-canvas"> </canvas>
